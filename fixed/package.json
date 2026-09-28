@@ -1,0 +1,9 @@
+{
+  "name": "oneiacool-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Backend de ONEIACOOL: maneja el login OAuth con Canva y crea diseños en nombre del usuario que lo autorizó.",
+  "dependencies": {
+    "@vercel/kv": "^1.0.1"
+  }
+}

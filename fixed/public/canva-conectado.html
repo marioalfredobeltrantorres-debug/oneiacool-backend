@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Canva conectado — ONEIACOOL</title>
+<style>
+  body { font-family: system-ui, sans-serif; background:#0b0b12; color:#e5e5f0; display:flex; align-items:center; justify-content:center; height:100vh; margin:0; }
+  .card { text-align:center; max-width:520px; padding:2rem; }
+  button { margin-top:1.5rem; padding:0.9rem 1.6rem; background:#8b5cf6; color:white; border:none; border-radius:8px; font-weight:600; font-size:1rem; cursor:pointer; }
+  button:hover { background:#7c3aed; }
+  #resultado { margin-top:1.5rem; font-size:0.9rem; text-align:left; white-space:pre-wrap; background:#15151f; padding:1rem; border-radius:8px; }
+  a { color:#a78bfa; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>✅ Conectaste tu cuenta de Canva</h1>
+    <p>Ahora este navegador tiene una sesión guardada. Prueba a crear un diseño real:</p>
+    <button onclick="crearDiseno()">Crear un diseño de prueba</button>
+    <div id="resultado"></div>
+  </div>
+  <script>
+    async function crearDiseno() {
+      const div = document.getElementById('resultado');
+      div.textContent = 'Creando...';
+      try {
+        const resp = await fetch('/api/canva/create-design', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ titulo: 'Prueba desde ONEIACOOL', tipo: 'presentation' })
+        });
+        const data = await resp.json();
+        if (!resp.ok) {
+          div.textContent = 'Error: ' + JSON.stringify(data, null, 2);
+          return;
+        }
+        div.innerHTML = `Diseño creado.<br><a href="${data.editar_url}" target="_blank">Abrir para editar en Canva →</a>`;
+      } catch (e) {
+        div.textContent = 'Error de red: ' + e.message;
+      }
+    }
+  </script>
+</body>
+</html>
