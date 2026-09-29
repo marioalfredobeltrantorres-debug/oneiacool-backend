@@ -6,20 +6,20 @@
 <title>ONEIACOOL</title>
 <style>
   :root{
-    --bg-0:#050308;
-    --bg-1:#0e0819;
-    --panel:#140c26;
-    --line:#2d1c4d;
-    --line-soft:#1e1336;
-    --violet:#9b5cf0;
-    --violet-bright:#c9a3ff;
-    --violet-dim:#5a3b96;
-    --magenta:#e34fd0;
-    --text:#f2ecff;
-    --muted:#a191c9;
-    --muted-2:#6c5a94;
+    --bg-0:#07020f;
+    --bg-1:#120a24;
+    --panel:#170f2c;
+    --line:#3a2566;
+    --line-soft:#231543;
+    --violet:#a463f2;
+    --violet-bright:#dcc4ff;
+    --violet-dim:#5c3ba3;
+    --violet-deep:#6c2fd6;
+    --text:#f3ecff;
+    --muted:#af9dd6;
+    --muted-2:#7360a3;
     --danger:#ff6b7a;
-    --ok:#7cf0c2;
+    --ok:#c9a3ff;
     --mono:"JetBrains Mono","Fira Code",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
     --sans:"Space Grotesk","Inter",-apple-system,"Segoe UI",ui-sans-serif,sans-serif;
   }
@@ -30,9 +30,9 @@
     font-family:var(--sans);
     color:var(--text);
     background:
-      radial-gradient(1000px 650px at 88% 8%, rgba(227,79,208,.14), transparent 55%),
-      radial-gradient(900px 700px at 10% 90%, rgba(155,92,240,.16), transparent 55%),
-      radial-gradient(1400px 900px at 50% 50%, #120a22, var(--bg-0));
+      radial-gradient(1000px 650px at 88% 8%, rgba(108,47,214,.20), transparent 55%),
+      radial-gradient(900px 700px at 10% 90%, rgba(164,99,242,.18), transparent 55%),
+      radial-gradient(1400px 900px at 50% 50%, #150a2b, var(--bg-0));
     min-height:100vh;
     overflow-x:hidden;
     position:relative;
@@ -41,12 +41,11 @@
   ::-webkit-scrollbar-thumb{background:var(--line);border-radius:6px;}
   ::-webkit-scrollbar-thumb:hover{background:var(--violet);}
 
-  /* faint grid texture */
   body::before{
     content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
     background-image:
-      linear-gradient(rgba(155,92,240,.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(155,92,240,.05) 1px, transparent 1px);
+      linear-gradient(rgba(164,99,242,.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(164,99,242,.06) 1px, transparent 1px);
     background-size:42px 42px;
     mask-image:radial-gradient(circle at 50% 45%, black 0%, transparent 72%);
   }
@@ -80,27 +79,27 @@
     width:46%;height:46%;border-radius:50%;
     display:flex;flex-direction:column;align-items:center;justify-content:center;
     text-align:center;gap:6px;
-    background:radial-gradient(circle at 50% 40%, rgba(155,92,240,.16), rgba(10,6,20,.4) 70%);
+    background:radial-gradient(circle at 50% 40%, rgba(164,99,242,.20), rgba(10,6,20,.4) 70%);
     border:1px solid var(--line);
   }
   .hud-title{
-    font-size:clamp(15px,3.4vw,22px);font-weight:700;letter-spacing:.06em;
-    background:linear-gradient(90deg, var(--violet-bright), var(--magenta));
+    font-size:clamp(17px,3.8vw,26px);font-weight:700;letter-spacing:.14em;
+    background:linear-gradient(90deg, var(--violet-bright), var(--violet-deep));
     -webkit-background-clip:text;background-clip:text;color:transparent;
   }
   .hud-status{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-2);min-height:14px;}
-  .hud-status.listening{color:var(--magenta);}
+  .hud-status.listening{color:var(--violet-bright);}
   .hud-status.speaking{color:var(--ok);}
-  .hud-status.thinking{color:var(--violet-bright);}
+  .hud-status.thinking{color:var(--violet);}
 
   .mic-btn{
     position:relative;
     width:76px;height:76px;border-radius:50%;
-    background:radial-gradient(circle at 40% 35%, #2a1a4d, #0c0716 72%);
+    background:radial-gradient(circle at 40% 35%, #331a5e, #0c0716 72%);
     border:1.5px solid var(--violet-dim);
     display:flex;align-items:center;justify-content:center;
     cursor:pointer;color:var(--violet-bright);
-    box-shadow:0 0 0 rgba(155,92,240,0);
+    box-shadow:0 0 0 rgba(164,99,242,0);
     transition:box-shadow .2s, border-color .2s, transform .1s;
     margin-top:2px;
   }
@@ -108,35 +107,30 @@
   .mic-btn:active{transform:scale(.96);}
   .mic-btn svg{width:26px;height:26px;}
   .mic-btn.listening{
-    border-color:var(--magenta);color:#ffd7f7;
+    border-color:var(--violet-bright);color:#f1e4ff;
     animation:pulseMic 1.2s ease-in-out infinite;
   }
   .mic-btn.speaking{
-    border-color:var(--ok);color:#daffee;
+    border-color:var(--ok);color:#f1e4ff;
     animation:pulseMicSpeak 1s ease-in-out infinite;
   }
   .mic-btn.disabled{opacity:.35;cursor:not-allowed;}
   @keyframes pulseMic{
-    0%,100%{box-shadow:0 0 0 0 rgba(227,79,208,.45);}
-    50%{box-shadow:0 0 0 16px rgba(227,79,208,0);}
+    0%,100%{box-shadow:0 0 0 0 rgba(164,99,242,.45);}
+    50%{box-shadow:0 0 0 16px rgba(164,99,242,0);}
   }
   @keyframes pulseMicSpeak{
-    0%,100%{box-shadow:0 0 0 0 rgba(124,240,194,.4);}
-    50%{box-shadow:0 0 0 14px rgba(124,240,194,0);}
+    0%,100%{box-shadow:0 0 0 0 rgba(201,163,255,.4);}
+    50%{box-shadow:0 0 0 14px rgba(201,163,255,0);}
   }
 
-  .mode-ring-labels{
-    position:absolute;inset:0;pointer-events:none;
+  .hud-intent{
+    position:absolute;bottom:-34px;left:50%;transform:translateX(-50%);
+    font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-2);
+    background:var(--panel);border:1px solid var(--line);padding:5px 12px;border-radius:20px;
+    white-space:nowrap;
   }
-  .mode-label{
-    position:absolute;pointer-events:auto;cursor:pointer;
-    font-size:10px;letter-spacing:.1em;color:var(--muted);
-    background:var(--panel);border:1px solid var(--line);
-    padding:5px 9px;border-radius:8px;white-space:nowrap;
-    transition:.15s;
-  }
-  .mode-label:hover{color:var(--text);border-color:var(--violet);}
-  .mode-label.active{color:var(--violet-bright);border-color:var(--violet);box-shadow:0 0 12px rgba(155,92,240,.35);}
+  .hud-intent b{color:var(--violet-bright);font-weight:600;}
 
   /* ================= CORNER PANELS ================= */
   .corner{position:fixed;z-index:2;color:var(--muted);}
@@ -177,7 +171,7 @@
     display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--violet-bright);
   }
 
-  /* ================= SETTINGS PANEL (secondary) ================= */
+  /* ================= SETTINGS PANEL ================= */
   .settings-toggle{
     position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:6;
     background:var(--panel);border:1px solid var(--line);color:var(--muted);
@@ -205,7 +199,7 @@
   .key-row input{flex:1;}
   .small-btn{background:var(--panel);border:1px solid var(--line);color:var(--muted);border-radius:9px;padding:0 10px;font-size:11px;cursor:pointer;}
   .small-btn:hover{color:var(--violet-bright);border-color:var(--violet);}
-  .note{font-size:11px;color:var(--muted-2);line-height:1.5;background:rgba(155,92,240,.06);border:1px solid var(--line);padding:9px 10px;border-radius:10px;margin-bottom:12px;}
+  .note{font-size:11px;color:var(--muted-2);line-height:1.5;background:rgba(164,99,242,.07);border:1px solid var(--line);padding:9px 10px;border-radius:10px;margin-bottom:12px;}
   .note b{color:var(--violet-bright);}
   .toggle-row{display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:12px;}
   .switch{width:38px;height:21px;border-radius:20px;background:var(--panel);border:1px solid var(--line);position:relative;cursor:pointer;flex-shrink:0;}
@@ -227,7 +221,7 @@
 
   .transcript-panel{
     position:fixed;left:0;right:0;bottom:0;z-index:8;
-    max-height:52vh;
+    max-height:56vh;
     background:linear-gradient(180deg, transparent, var(--bg-0) 18%, var(--bg-0));
     transform:translateY(100%);transition:transform .25s ease;
     display:flex;flex-direction:column;
@@ -238,19 +232,22 @@
   .msg{display:flex;gap:10px;}
   .msg.user{flex-direction:row-reverse;}
   .avatar{width:26px;height:26px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;}
-  .avatar.ai{background:conic-gradient(from 210deg, var(--violet), var(--magenta));color:#0b0714;}
+  .avatar.ai{background:conic-gradient(from 210deg, var(--violet), var(--violet-deep));color:#0b0714;}
   .avatar.me{background:var(--panel);border:1px solid var(--line);color:var(--muted);}
   .bubble{max-width:80%;padding:10px 13px;border-radius:14px;font-size:13.5px;line-height:1.6;}
   .msg.assistant .bubble{background:var(--panel);border:1px solid var(--line);border-top-left-radius:4px;}
-  .msg.user .bubble{background:linear-gradient(135deg, rgba(155,92,240,.2), rgba(227,79,208,.12));border:1px solid rgba(155,92,240,.3);border-top-right-radius:4px;}
+  .msg.user .bubble{background:linear-gradient(135deg, rgba(164,99,242,.22), rgba(108,47,214,.14));border:1px solid rgba(164,99,242,.32);border-top-right-radius:4px;}
   .bubble p{margin:0 0 6px;}
   .bubble p:last-child{margin-bottom:0;}
   .bubble img{max-width:100%;border-radius:10px;margin-top:6px;}
   .code-block{background:#0d0819;border:1px solid var(--line);border-radius:9px;margin:6px 0;overflow:hidden;}
-  .code-head{display:flex;justify-content:space-between;padding:5px 9px;background:#120b21;font-size:10px;color:var(--muted-2);font-family:var(--mono);}
+  .code-head{display:flex;justify-content:space-between;padding:5px 9px;background:#150c28;font-size:10px;color:var(--muted-2);font-family:var(--mono);}
   .code-head button{background:none;border:1px solid var(--line);color:var(--muted);font-size:9px;border-radius:5px;padding:2px 7px;cursor:pointer;}
-  pre{margin:0;padding:10px 12px;overflow-x:auto;font-family:var(--mono);font-size:12px;line-height:1.55;color:#e6dcff;}
+  pre{margin:0;padding:10px 12px;overflow-x:auto;font-family:var(--mono);font-size:12px;line-height:1.55;color:#e9dcff;}
   .err-bubble{border-color:rgba(255,107,122,.5) !important;background:rgba(255,107,122,.08) !important;color:#ffc0c8;}
+  .msg-tools{display:flex;gap:6px;margin-top:8px;}
+  .msg-tools button{background:none;border:1px solid var(--line);color:var(--muted-2);font-size:10px;border-radius:7px;padding:3px 8px;cursor:pointer;}
+  .msg-tools button:hover{color:var(--violet-bright);border-color:var(--violet);}
 
   .composer{
     max-width:700px;margin:10px auto 16px;padding:0 16px;display:flex;gap:8px;align-items:flex-end;
@@ -265,14 +262,14 @@
     font-family:var(--sans);font-size:13.5px;padding:7px 0;outline:none;
   }
   .send-btn{width:36px;height:36px;border-radius:10px;border:none;flex-shrink:0;cursor:pointer;
-    background:linear-gradient(135deg, var(--violet), var(--magenta));color:#fff;
+    background:linear-gradient(135deg, var(--violet), var(--violet-deep));color:#fff;
     display:flex;align-items:center;justify-content:center;}
   .send-btn:disabled{opacity:.35;cursor:not-allowed;}
 
   .voice-caption{
     position:fixed;bottom:96px;left:50%;transform:translateX(-50%);z-index:5;
     max-width:80vw;text-align:center;font-size:13px;color:var(--muted);
-    background:rgba(20,12,38,.7);border:1px solid var(--line);padding:8px 16px;border-radius:20px;
+    background:rgba(23,15,44,.75);border:1px solid var(--line);padding:8px 16px;border-radius:20px;
     backdrop-filter:blur(4px);opacity:0;transition:.2s;pointer-events:none;
   }
   .voice-caption.show{opacity:1;}
@@ -280,7 +277,18 @@
   @media (max-width:720px){
     .corner{display:none;}
     .hud{width:92vw;}
-    .mode-label{font-size:8.5px;padding:4px 6px;}
+    .hud-intent{font-size:9px;}
+  }
+
+  .preview-warning{
+    position:fixed;top:0;left:0;right:0;z-index:20;
+    background:#3a1240;color:#ffe1fb;border-bottom:1px solid var(--violet);
+    font-size:12px;line-height:1.5;text-align:center;padding:9px 46px 9px 14px;
+  }
+  .preview-warning b{color:#fff;}
+  .preview-warning .dismiss{
+    position:absolute;right:12px;top:50%;transform:translateY(-50%);
+    background:none;border:none;color:#ffe1fb;font-size:15px;cursor:pointer;
   }
 </style>
 </head>
@@ -299,14 +307,14 @@
   <div class="corner-title">Estado</div>
   <div class="status-line"><span class="dot" id="dotKey"></span><span id="txtKey">Sin clave configurada</span></div>
   <div class="status-line"><span class="dot" id="dotVoice"></span><span id="txtVoice">Voz: comprobando…</span></div>
-  <div class="status-line"><span class="dot on"></span><span id="txtMode">Modo: Chat</span></div>
+  <div class="status-line"><span class="dot on"></span><span id="txtMode">Modo: automático</span></div>
 </div>
 
 <div class="corner panel-links">
   <button id="openSettingsLink">Configuración</button>
   <button id="clearChatLink">Borrar conversación</button>
   <button id="toggleVoiceOut">Silenciar voz: NO</button>
-  <div class="sys-name">oneiacool · jarvis-hrz</div>
+  <div class="sys-name">ONEIACOOL · núcleo violeta</div>
 </div>
 
 <div class="corner panel-power">
@@ -324,13 +332,6 @@
       <g class="spin-slow-rev" id="nodeRing"></g>
     </svg>
 
-    <div class="mode-ring-labels" id="modeLabels">
-      <button class="mode-label active" data-mode="chat" style="top:6%;left:50%;transform:translateX(-50%);">CHAT</button>
-      <button class="mode-label" data-mode="code" style="top:50%;right:0%;transform:translateY(-50%);">CÓDIGO</button>
-      <button class="mode-label" data-mode="math" style="bottom:6%;left:50%;transform:translateX(-50%);">INGENIERÍA</button>
-      <button class="mode-label" data-mode="image" style="top:50%;left:0%;transform:translateY(-50%);">IMAGEN</button>
-    </div>
-
     <div class="hud-center">
       <div class="hud-title">ONEIACOOL</div>
       <div class="hud-status" id="hudStatus">en espera</div>
@@ -343,10 +344,17 @@
         </svg>
       </button>
     </div>
+    <div class="hud-intent">Detectando: <b id="intentLabel">conversación</b></div>
   </div>
 </div>
 
 <div class="voice-caption" id="voiceCaption"></div>
+
+
+<div class="preview-warning" id="previewWarning" style="display:none;">
+  ⚠ Estás viendo esto en la vista previa de Claude. Aquí el navegador bloquea el micrófono y a veces las llamadas a la API. <b>Descarga el archivo y ábrelo directamente en Chrome</b> para que el micrófono y las respuestas funcionen sin problemas.
+  <button class="dismiss" id="dismissWarning">✕</button>
+</div>
 
 <button class="settings-toggle" id="openSettingsTop">⚙ Configurar clave / proveedor</button>
 <button class="transcript-toggle" id="toggleTranscript">⌨ Escribir en su lugar</button>
@@ -359,18 +367,25 @@
   <div class="field">
     <label for="provider">Motor de IA</label>
     <select id="provider">
-      <option value="openai">OpenAI (GPT)</option>
+      <option value="openai">OpenAI (GPT + DALL·E)</option>
       <option value="gemini">Google Gemini</option>
     </select>
   </div>
   <div class="field">
-    <label for="apiKey">Clave API (solo en esta sesión)</label>
+    <label for="apiKey">Clave API (tuya, no se comparte)</label>
     <div class="key-row">
       <input type="password" id="apiKey" placeholder="Pega tu clave aquí" autocomplete="off">
       <button class="small-btn" id="toggleKeyVis">Ver</button>
     </div>
   </div>
-  <div class="note">Tu clave no se guarda ni se envía a ONEIACOOL: solo se usa en tu navegador para llamar directo a la API oficial del proveedor.</div>
+  <div class="toggle-row">
+    <span>Recordar mi clave (oculta)</span>
+    <div class="switch" id="rememberSwitch"></div>
+  </div>
+  <div class="note" id="rememberNote">
+    Si lo activas, tu clave se guarda <b>cifrada en el almacenamiento privado de Claude</b>, ligado solo a tu cuenta — nunca queda escrita en el archivo HTML. Solo se rellena sola cuando abres esta app dentro de Claude; si la descargas y la abres suelta en tu navegador, tendrás que escribirla de nuevo.
+  </div>
+  <button class="small-btn" id="forgetKeyBtn" style="width:100%;margin-bottom:12px;">Olvidar clave guardada</button>
 
   <div class="toggle-row">
     <span>Escuchar de forma continua</span>
@@ -378,7 +393,9 @@
   </div>
   <div class="note">Con esto activo, ONEIACOOL vuelve a escuchar automáticamente después de responder, para que puedas hablar sin tocar el botón cada vez.</div>
 
-  <div class="note"><b>Video y música</b> no están disponibles: ni OpenAI ni Gemini los ofrecen por API simple.</div>
+  <div class="note"><b>Sin límite propio de mensajes:</b> esta app no recorta tu conversación ni cobra por su cuenta. El único límite es el de tu propio plan/cuota en OpenAI o Google, ya que usas tu clave.</div>
+  <div class="note"><b>Qué sabe hacer sola:</b> ONEIACOOL detecta en tu mensaje si quieres código, un procedimiento de matemáticas/ingeniería, una imagen o charlar, sin que elijas un modo a mano. Cada respuesta se puede descargar como documento de texto.</div>
+  <div class="note"><b>Video y audio/música</b> no están disponibles: ni OpenAI ni Gemini los ofrecen todavía por una API simple de clave personal, así que no incluyo un botón que finja hacerlo.</div>
   <div class="note" id="voiceSupportNote"></div>
 </div>
 
@@ -398,19 +415,20 @@
 
 <script>
 (function(){
-  const SYSTEM_PROMPT = "Eres ONEIACOOL, un asistente de inteligencia artificial de la plataforma JARVIS-HRZ, con una interfaz de voz tipo HUD futurista. Ayudas con programación (código completo y funcional), matemáticas e ingeniería (resuelves paso a paso) y conversación general. Si te preguntan quién te creó, responde siempre que tu creador es MABT; nunca menciones a OpenAI, Google ni Anthropic como tu creador. Como muchas respuestas se leerán en voz alta, sé conciso y evita bloques de código muy largos cuando el usuario hable por voz; si el usuario escribe, puedes responder con más detalle y código completo. Responde en español salvo que el usuario use otro idioma.";
+  const SYSTEM_PROMPT = "Eres ONEIACOOL, una asistente de inteligencia artificial con una interfaz de voz tipo HUD futurista de color morado. Ayudas con programación (código completo, funcional y bien comentado), matemáticas e ingeniería (resuelves SIEMPRE paso a paso, mostrando cada procedimiento con su razonamiento antes del resultado final) y conversación general. Si te preguntan quién te creó, responde siempre que tu creadora es MABT; nunca menciones a OpenAI, Google ni Anthropic como tu creadora. No generas video ni música: si te lo piden, dilo con honestidad y ofrece alternativas (por ejemplo un guion, una descripción de escena, o una letra de canción). Como muchas respuestas se leerán en voz alta, sé conciso y evita bloques de código muy largos cuando el usuario hable por voz; si el usuario escribe, puedes responder con más detalle y código completo. Responde en español salvo que el usuario use otro idioma.";
 
   // ---------- element refs ----------
   const $ = id => document.getElementById(id);
   const els = {
-    hud: $('hud'), micBtn: $('micBtn'), hudStatus: $('hudStatus'),
-    modeLabels: $('modeLabels'),
+    previewWarning: $('previewWarning'),
+    hud: $('hud'), micBtn: $('micBtn'), hudStatus: $('hudStatus'), intentLabel: $('intentLabel'),
     settingsPanel: $('settingsPanel'), overlay: $('overlay'),
     openSettingsTop: $('openSettingsTop'), openSettingsLink: $('openSettingsLink'), closeSettings: $('closeSettings'),
     provider: $('provider'), apiKey: $('apiKey'), toggleKeyVis: $('toggleKeyVis'),
+    rememberSwitch: $('rememberSwitch'), forgetKeyBtn: $('forgetKeyBtn'),
     continuousSwitch: $('continuousSwitch'),
     dotKey: $('dotKey'), txtKey: $('txtKey'), dotVoice: $('dotVoice'), txtVoice: $('txtVoice'), txtMode: $('txtMode'),
-    voiceSupportNote: $('voiceSupportNote'), voiceCaption: $('voiceCaption'),
+    voiceSupportNote: $('voiceSupportNote'), voiceCaption: $('voiceCaption'), rememberNote: $('rememberNote'),
     transcriptPanel: $('transcriptPanel'), toggleTranscript: $('toggleTranscript'),
     transcriptInner: $('transcriptInner'), transcriptScroll: $('transcriptScroll'),
     promptInput: $('promptInput'), sendBtn: $('sendBtn'),
@@ -418,20 +436,70 @@
     clockTime: $('clockTime'), clockDate: $('clockDate'), clockDay: $('clockDay'),
   };
 
-  let mode = 'chat';
+  // ---------- detección de vista previa embebida ----------
+  let inIframe = false;
+  try{ inIframe = window.self !== window.top; }catch(e){ inIframe = true; }
+  if(inIframe){
+    els.previewWarning.style.display = 'block';
+    document.getElementById('dismissWarning').addEventListener('click', ()=>{ els.previewWarning.style.display='none'; });
+  }
+
   let history = [];
   let sending = false;
   let continuousListening = false;
   let voiceOutMuted = false;
   let recognition = null;
   let recognizing = false;
+  let rememberKey = false;
+  const storageAvailable = !!(window.storage && window.storage.get && window.storage.set);
+
+  // Se declara aquí arriba (y no más abajo, donde vivía antes) porque
+  // setStatus() y updateKeyStatus() la usan desde el principio del script;
+  // declararla más tarde causaba un ReferenceError que detenía toda la app.
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const recognitionSupported = !!SR;
+
+  // ---------- clave oculta persistente (solo dentro de Claude) ----------
+  async function loadSavedKey(){
+    if(!storageAvailable) return;
+    try{
+      const provRes = await window.storage.get('oneiacool:provider', false);
+      if(provRes && provRes.value) els.provider.value = provRes.value;
+    }catch(e){ /* no guardado aún */ }
+    try{
+      const keyRes = await window.storage.get('oneiacool:apikey', false);
+      if(keyRes && keyRes.value){
+        els.apiKey.value = keyRes.value;
+        rememberKey = true;
+        els.rememberSwitch.classList.add('on');
+      }
+    }catch(e){ /* no guardado aún */ }
+    updateKeyStatus();
+  }
+
+  async function saveKeyIfNeeded(){
+    if(!rememberKey || !storageAvailable) return;
+    try{
+      await window.storage.set('oneiacool:apikey', els.apiKey.value.trim(), false);
+      await window.storage.set('oneiacool:provider', els.provider.value, false);
+    }catch(e){ console.error('No se pudo guardar la clave', e); }
+  }
+
+  async function forgetSavedKey(){
+    rememberKey = false;
+    els.rememberSwitch.classList.remove('on');
+    if(storageAvailable){
+      try{ await window.storage.delete('oneiacool:apikey', false); }catch(e){}
+    }
+    els.apiKey.value = '';
+    updateKeyStatus();
+  }
 
   // ---------- SVG ring generation ----------
   function buildRings(){
     const tickGroup = $('tickRing');
     const nodeGroup = $('nodeRing');
     const cx=200, cy=200;
-    // outer tick marks (equalizer-style)
     const tickR = 172;
     const count = 72;
     for(let i=0;i<count;i++){
@@ -451,7 +519,6 @@
       line.dataset.idx = i;
       tickGroup.appendChild(line);
     }
-    // decorative nodes
     const nodeR = 150;
     [0,60,120,180,240,300].forEach(deg=>{
       const a = deg*Math.PI/180;
@@ -470,7 +537,7 @@
     const ticks = document.querySelectorAll('#tickRing .tick');
     cancelAnimationFrame(animFrame);
     function frame(){
-      ticks.forEach((t,i)=>{
+      ticks.forEach((t)=>{
         const on = active && Math.random() > 0.55;
         t.setAttribute('stroke', on ? 'var(--violet-bright)' : 'var(--violet-dim)');
         t.setAttribute('stroke-width', on ? 3 : 2);
@@ -514,7 +581,22 @@
     els.micBtn.classList.toggle('disabled', !hasKey || !recognitionSupported);
   }
   els.apiKey.addEventListener('input', updateKeyStatus);
-  els.provider.addEventListener('change', updateKeyStatus);
+  els.apiKey.addEventListener('blur', saveKeyIfNeeded);
+  els.provider.addEventListener('change', () => { updateKeyStatus(); saveKeyIfNeeded(); });
+
+  els.rememberSwitch.addEventListener('click', () => {
+    rememberKey = !rememberKey;
+    els.rememberSwitch.classList.toggle('on', rememberKey);
+    if(rememberKey) saveKeyIfNeeded();
+    else if(storageAvailable) window.storage.delete('oneiacool:apikey', false).catch(()=>{});
+  });
+  els.forgetKeyBtn.addEventListener('click', forgetSavedKey);
+
+  if(!storageAvailable){
+    els.rememberNote.innerHTML = 'El almacenamiento privado no está disponible en este contexto (por ejemplo, si abriste el archivo suelto fuera de Claude). La clave solo se mantendrá mientras esta pestaña siga abierta.';
+    els.rememberSwitch.style.opacity = '.4';
+    els.rememberSwitch.style.pointerEvents = 'none';
+  }
 
   els.continuousSwitch.addEventListener('click', () => {
     continuousListening = !continuousListening;
@@ -527,21 +609,22 @@
     if(voiceOutMuted) speechSynthesis.cancel();
   });
 
-  // ---------- mode selection ----------
-  els.modeLabels.addEventListener('click', (e)=>{
-    const btn = e.target.closest('.mode-label');
-    if(!btn) return;
-    mode = btn.dataset.mode;
-    [...els.modeLabels.children].forEach(b=>b.classList.toggle('active', b===btn));
-    const names = {chat:'Chat', code:'Código', math:'Ingeniería', image:'Imagen'};
-    els.txtMode.textContent = 'Modo: ' + names[mode];
-    els.promptInput.placeholder = {
-      chat:'Escribe tu mensaje a ONEIACOOL...',
-      code:'Describe el código que necesitas...',
-      math:'Escribe tu problema matemático o de ingeniería...',
-      image:'Describe la imagen que quieres generar...'
-    }[mode];
-  });
+  // ---------- detección automática de intención (sin menú) ----------
+  function classifyIntent(text){
+    const t = text.toLowerCase();
+    if(/(genera|crea|dibuja|haz|pinta|quiero)\s+.*(imagen|foto|ilustraci[oó]n|dibujo|logo|arte)/.test(t) || /^(imagen|foto)[: ]/.test(t)) return 'image';
+    if(/(c[oó]digo|programa|script|funci[oó]n|debug|depura|python|javascript|html|css|\bjava\b|c\+\+|sql|api|algoritmo)/.test(t)) return 'code';
+    if(/(resuelve|ecuaci[oó]n|integral|derivada|matem[aá]tic|ingenier[ií]a|calcula|f[oó]rmula|circuito|estructura|f[ií]sica|est[aá]tica|termodin[aá]mica)/.test(t)) return 'math';
+    if(/(video|pel[ií]cula|clip animado)/.test(t)) return 'video_unavailable';
+    if(/(m[uú]sica|canci[oó]n|melod[ií]a|beat|pista de audio)/.test(t)) return 'music_unavailable';
+    return 'chat';
+  }
+  const intentNames = {chat:'conversación', code:'código', math:'ingeniería / matemáticas', image:'imagen', video_unavailable:'video (no disponible)', music_unavailable:'música (no disponible)'};
+  function modePrefix(intent){
+    if(intent==='code') return 'Genera código completo, funcional y bien comentado para lo siguiente. Explica brevemente cómo usarlo:\n\n';
+    if(intent==='math') return 'Resuelve el siguiente problema matemático o de ingeniería mostrando SIEMPRE el procedimiento detallado paso a paso, con el razonamiento de cada paso y el resultado final claramente marcado:\n\n';
+    return '';
+  }
 
   // ---------- transcript / composer ----------
   function openTranscript(){ els.transcriptPanel.classList.add('open'); els.promptInput.focus(); }
@@ -554,6 +637,8 @@
     els.promptInput.style.height='auto';
     els.promptInput.style.height=Math.min(els.promptInput.scrollHeight,120)+'px';
     updateKeyStatus();
+    const t = els.promptInput.value.trim();
+    els.intentLabel.textContent = t ? intentNames[classifyIntent(t)] : 'conversación';
   });
   els.promptInput.addEventListener('keydown', (e)=>{
     if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); if(!els.sendBtn.disabled) handleUserInput(els.promptInput.value.trim(), false); }
@@ -584,6 +669,14 @@
     });
     return html;
   }
+  function downloadText(filename, content){
+    const blob = new Blob([content], {type:'text/plain;charset=utf-8'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = filename;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url), 2000);
+  }
   function addMessage(role, content, opts){
     opts = opts||{};
     const wrap=document.createElement('div');
@@ -596,6 +689,15 @@
     if(opts.imageUrl){ bubble.innerHTML = `<p>${escapeHtml(content)}</p><img src="${opts.imageUrl}" alt="Imagen generada">`; }
     else { bubble.innerHTML = renderContent(content); }
     wrap.appendChild(avatar); wrap.appendChild(bubble);
+    if(role==='assistant' && !opts.error){
+      const tools = document.createElement('div');
+      tools.className='msg-tools';
+      const dl = document.createElement('button');
+      dl.textContent = '⬇ Guardar como documento';
+      dl.addEventListener('click', ()=> downloadText('ONEIACOOL-respuesta-'+Date.now()+'.md', content));
+      tools.appendChild(dl);
+      bubble.appendChild(tools);
+    }
     els.transcriptInner.appendChild(wrap);
     els.transcriptScroll.scrollTop = els.transcriptScroll.scrollHeight;
     return wrap;
@@ -624,12 +726,26 @@
   setStatus('idle');
 
   // ---------- API calls ----------
+  function networkErrorMessage(err){
+    // fetch() lanza un TypeError genérico cuando la petición nunca llega a
+    // salir (red bloqueada, CORS, sin conexión). Lo distinguimos de un
+    // error real devuelto por la API (que sí trae mensaje propio).
+    if(err instanceof TypeError){
+      return inIframe
+        ? 'No se pudo conectar con la API. Esto pasa casi siempre porque estás dentro de la vista previa de Claude, que bloquea las peticiones salientes. Descarga el archivo y ábrelo directamente en tu navegador.'
+        : 'No se pudo conectar con la API. Revisa tu conexión a internet o si algún bloqueador de anuncios/extensión está interfiriendo.';
+    }
+    return err.message;
+  }
   async function callOpenAIChat(messages){
-    const res = await fetch('https://api.openai.com/v1/chat/completions', {
-      method:'POST',
-      headers:{'Content-Type':'application/json','Authorization':'Bearer '+els.apiKey.value.trim()},
-      body: JSON.stringify({ model:'gpt-4o-mini', messages, temperature:0.7 })
-    });
+    let res;
+    try{
+      res = await fetch('https://api.openai.com/v1/chat/completions', {
+        method:'POST',
+        headers:{'Content-Type':'application/json','Authorization':'Bearer '+els.apiKey.value.trim()},
+        body: JSON.stringify({ model:'gpt-4o-mini', messages, temperature:0.7 })
+      });
+    }catch(err){ throw new Error(networkErrorMessage(err)); }
     const data = await res.json();
     if(!res.ok) throw new Error(data.error?.message || 'Error de OpenAI');
     return data.choices[0].message.content;
@@ -639,27 +755,28 @@
     const sys = messages.find(m=>m.role==='system');
     const body = { contents };
     if(sys) body.systemInstruction = { parts:[{text:sys.content}] };
-    const res = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key='+encodeURIComponent(els.apiKey.value.trim()), {
-      method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body)
-    });
+    let res;
+    try{
+      res = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key='+encodeURIComponent(els.apiKey.value.trim()), {
+        method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body)
+      });
+    }catch(err){ throw new Error(networkErrorMessage(err)); }
     const data = await res.json();
     if(!res.ok) throw new Error(data.error?.message || 'Error de Gemini');
     return data.candidates?.[0]?.content?.parts?.map(p=>p.text).join('\n') || '(sin respuesta)';
   }
   async function callOpenAIImage(prompt){
-    const res = await fetch('https://api.openai.com/v1/images/generations', {
-      method:'POST',
-      headers:{'Content-Type':'application/json','Authorization':'Bearer '+els.apiKey.value.trim()},
-      body: JSON.stringify({ model:'dall-e-3', prompt, n:1, size:'1024x1024' })
-    });
+    let res;
+    try{
+      res = await fetch('https://api.openai.com/v1/images/generations', {
+        method:'POST',
+        headers:{'Content-Type':'application/json','Authorization':'Bearer '+els.apiKey.value.trim()},
+        body: JSON.stringify({ model:'dall-e-3', prompt, n:1, size:'1024x1024' })
+      });
+    }catch(err){ throw new Error(networkErrorMessage(err)); }
     const data = await res.json();
     if(!res.ok) throw new Error(data.error?.message || 'Error generando la imagen');
     return data.data[0].url;
-  }
-  function modePrefix(){
-    if(mode==='code') return 'Genera código completo, funcional y bien comentado para lo siguiente. Explica brevemente cómo usarlo:\n\n';
-    if(mode==='math') return 'Resuelve el siguiente problema matemático o de ingeniería paso a paso, mostrando el razonamiento y el resultado final claramente:\n\n';
-    return '';
   }
 
   // strip markdown/code fences for speech
@@ -703,9 +820,22 @@
     addMessage('user', raw);
     setStatus('thinking', fromVoice ? ('Escuché: "'+raw+'"') : null);
 
-    if(mode==='image'){
+    const intent = classifyIntent(raw);
+    els.intentLabel.textContent = intentNames[intent];
+    els.txtMode.textContent = 'Modo: ' + intentNames[intent];
+
+    if(intent==='video_unavailable' || intent==='music_unavailable'){
+      const msg = intent==='video_unavailable'
+        ? 'Todavía no puedo generar video: ni OpenAI ni Gemini lo ofrecen por una API simple de clave personal. Puedo escribirte el guion, la descripción de escena por escena, o el código para montarlo con otra herramienta.'
+        : 'Todavía no puedo generar música/audio: no hay una API simple de clave personal para eso. Puedo escribirte la letra, la progresión de acordes, o una partitura en texto.';
+      addMessage('assistant', msg);
+      if(fromVoice) speak(msg); else setStatus('idle');
+      sending=false; return;
+    }
+
+    if(intent==='image'){
       try{
-        if(provider!=='openai') throw new Error('La generación de imágenes solo está disponible con una clave de OpenAI.');
+        if(provider!=='openai') throw new Error('La generación de imágenes solo está disponible con una clave de OpenAI. Cambia el proveedor en Configuración.');
         const url = await callOpenAIImage(raw);
         addMessage('assistant','Aquí tienes tu imagen:', {imageUrl:url});
         if(fromVoice) speak('Listo, generé tu imagen.'); else setStatus('idle');
@@ -716,7 +846,7 @@
       sending=false; return;
     }
 
-    const userContent = modePrefix() + raw;
+    const userContent = modePrefix(intent) + raw;
     history.push({role:'user', content:userContent});
     const messages = [{role:'system', content:SYSTEM_PROMPT}, ...history];
     try{
@@ -732,9 +862,6 @@
   }
 
   // ---------- Speech recognition ----------
-  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  const recognitionSupported = !!SR;
-
   if(recognitionSupported){
     recognition = new SR();
     recognition.lang = 'es-ES';
@@ -766,12 +893,36 @@
     els.micBtn.classList.add('disabled');
   }
 
-  function startListening(){
-    if(!recognitionSupported) return;
+  async function startListening(){
+    if(!recognitionSupported){
+      setStatus('idle','Este navegador no soporta reconocimiento de voz.');
+      setTimeout(()=>setStatus('idle'), 3500);
+      return;
+    }
     if(!els.apiKey.value.trim()){ openSettings(); return; }
     if(recognizing) return;
     speechSynthesis.cancel();
-    try{ recognition.start(); }catch(e){ /* already started */ }
+
+    // Pedimos permiso de micrófono explícitamente primero: así el error
+    // ("bloqueado", "no hay micrófono", etc.) es claro en vez de que
+    // el reconocimiento simplemente no arranque.
+    if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia){
+      try{
+        const stream = await navigator.mediaDevices.getUserMedia({audio:true});
+        stream.getTracks().forEach(t=>t.stop());
+      }catch(err){
+        let msg = 'No se pudo acceder al micrófono.';
+        if(err.name === 'NotAllowedError' || err.name === 'SecurityError') msg = inIframe
+          ? 'El micrófono está bloqueado en la vista previa de Claude. Descarga el archivo y ábrelo en tu navegador.'
+          : 'Bloqueaste el permiso de micrófono. Revísalo en el candado de la barra de direcciones.';
+        else if(err.name === 'NotFoundError') msg = 'No se detectó ningún micrófono en este dispositivo.';
+        setStatus('idle', msg);
+        setTimeout(()=>setStatus('idle'), 4000);
+        if(inIframe) els.previewWarning.style.display = 'block';
+        return;
+      }
+    }
+    try{ recognition.start(); }catch(e){ /* ya estaba iniciado */ }
   }
   function stopListening(){
     if(recognition && recognizing) recognition.stop();
@@ -787,6 +938,7 @@
   });
 
   updateKeyStatus();
+  loadSavedKey();
 })();
 </script>
 
